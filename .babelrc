@@ -1,0 +1,16 @@
+{
+    // presets代表babel支持的语法
+    "presets": [
+        // 下边这写安装完配置完成之后才会支持jsx语法
+        // npm i babel-preset-es2015 babel-preset-es2015-loose babel-preset-react -D 
+        [
+            "es2015",
+            {
+                // loose代表是松散的而不是非常严格的
+                "loose": true
+            }
+        ],
+        // 加这react支持之后才代表可以编译react代码
+        "react"
+    ]
+}
