@@ -21,7 +21,7 @@ app.use('/public', express.static(path.join(__dirname, '../dist/')))
 app.get("*", (req, res) => {
     const appString = ReactSSR.renderToString(serverEntry) // 得到的内容
     // 把template中的内容替换成appString
-    res.send(template.replace('<app></app>', appString)) // send到浏览器
+    res.send(template.replace('<!-- app -->', appString)) // send到浏览器
 })
 
 app.listen(3333, () => {
