@@ -12,5 +12,6 @@
         ],
         // 加这react支持之后才代表可以编译react代码
         "react"
-    ]
+    ],
+    "plugins": ["react-hot-loader/babel"]
 }
