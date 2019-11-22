@@ -4,7 +4,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                This is App
+                This is App123
             </div>
         )
     }

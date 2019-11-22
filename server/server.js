@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const app = express()
 const isDev = process.env.NODE_ENV === 'development'
-if (isDev) {
+if (!isDev) {
     // 服务端代码在serverEntry当中
     const serverEntry = require('../dist/server-entry').default
     // 同步去读文件
