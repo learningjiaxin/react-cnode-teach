@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 export default class App extends Component {
-    render() {
-        return (
-            <div>
-                This is App123
+  render() {
+    return (
+      <div>
+        This is App123
             </div>
-        )
-    }
+    )
+  }
 }
