@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import App from './App.jsx'
+import App from './views/App'
 import { AppContainer } from 'react-hot-loader'
 
 const root = document.getElementById('root')
