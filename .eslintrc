@@ -1,4 +1,5 @@
 {
     // 标准规则
-    "extends": "standard"
+    "extends": "standard",
+    "indent": ["off", 2]
 }
