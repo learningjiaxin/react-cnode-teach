@@ -1,36 +1,41 @@
 import React, { Component } from 'react'
 import {
-    observer,
-    inject,
+  observer,
+  inject,
 } from 'mobx-react'
 import PropTypes from 'prop-types'
-import AppState from '../../store/app-state'
+import { AppState } from '../../store/app-state'
 
 // 定义到provider上叫什么名字这里就叫什么名字
 @inject('appState')
 @observer
 export default class TopicList extends Component {
-    constructor() {
-        super()
-        this.changeName = this.changeName.bind(this)
-    }
-    componentDidMount() {
-        // do something here
-    }
+  constructor() {
+    super()
+    this.changeName = this.changeName.bind(this)
+  }
 
-    changeName(e) {
-        this.props.appState.changeName(e.target.value)
-    }
+  componentDidMount() {
+    // do something here
+  }
 
-    render() {
-        return (
-            <div>
-                <input type="text" onChange={this.changeName} />
-                {this.props.appState.msg}
-            </div>
-        )
-    }
+  changeName(e) {
+    const name = e.target.value
+    const { appState } = this.props
+    appState.changeName(name)
+  }
+
+  render() {
+    const { appState } = this.props
+    return (
+      <div>
+        <input type="text" onChange={this.changeName} />
+        {appState.msg}
+        <div>123456</div>
+      </div>
+    )
+  }
 }
 TopicList.propTypes = {
-    appState: PropTypes.instanceOf(AppState),
+  appState: PropTypes.instanceOf(AppState).isRequired,
 }

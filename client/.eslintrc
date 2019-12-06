@@ -1,28 +1,29 @@
 {
-    // 用某一种工具解析我们的代码
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
+  // 用某一种工具解析我们的代码
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
     },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "legacyDecorators": true
-        },
-        "sourceType": "module"
-    },
-    "extends": "airbnb",
-    "rules": {
-        "semi": [
-            0
-        ],
-        "react/jsx-filename-extension": [
-            0
-        ],
-        "jsx-ally/anthor-is-valid": [
-            0
-        ],
-        "global-require": 0
-    }
+    "sourceType": "module"
+  },
+  "extends": "airbnb",
+  "rules": {
+    "semi": [
+      0
+    ],
+    "react/jsx-filename-extension": [
+      0
+    ],
+    "jsx-ally/anthor-is-valid": [
+      0
+    ],
+    "global-require": 0,
+    "no-console": "off"
+  }
 }

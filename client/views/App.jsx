@@ -1,20 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
-    Link,
+  Link,
 } from 'react-router-dom'
-import Route from '../cofig/router'
+import Routes from '../config/router'
 
-export default class App extends Component {
-    componentDidMount() {
-        // do something here
-    }
-    render() {
-        return (
-            <div>
-                <Link to='/' >首页</Link><br />
-                <Link to='/detail'>详情页</Link>
-                <Route />
-            </div>
-        )
-    }
+
+export default class App extends React.Component {
+  componentDidMount() {
+    // do something here
+  }
+
+  render() {
+    return (
+      <div key="banner">
+        <div>
+          <Link to="/">首页</Link>
+          <br />
+          <Link to="/detail">详情页</Link>
+        </div>
+        <Routes />
+      </div>
+    )
+  }
 }

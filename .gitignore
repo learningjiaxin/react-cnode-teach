@@ -24,10 +24,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-UserInterface.xcuserstate  
+UserInterface.xcuserstate
 # Android/IntelliJ
 #
-build/
 .idea
 .gradle
 local.properties
