@@ -31,7 +31,6 @@ export default class TopicList extends Component {
       <div>
         <input type="text" onChange={this.changeName} />
         {appState.msg}
-        <div>123456</div>
       </div>
     )
   }
