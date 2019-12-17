@@ -1,11 +1,30 @@
 const express = require('express')
 // 引用ReactSSR模块
 const ReactSSR = require('react-dom/server')
+const bodyParser = require('body-parser')
+const session = require('express-session')
 const fs = require('fs')
 // 用绝对路径
 const path = require('path')
 const app = express()
 const isDev = process.env.NODE_ENV === 'development'
+
+// 把json数据请求格式转化成req.body上的数据
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(session({
+  maxAge: 10 * 60 * 1000,
+  name: 'tid',
+  resave: false,
+  saveUninitialized: false,
+  secret: 'react cnode class'
+}))
+
+// 使用api要放在服务端代码渲染之前
+app.use('/api/user', require('./util/handle-login'))
+app.use('/api', require('./util/proxy'))
+
 if (!isDev) {
   // 服务端代码在serverEntry当中
   const serverEntry = require('../dist/server-entry').default

@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
   // 把token放到req的query上边，也就是url后边?跟上
   const needAccessToken = req.query.needAccessToken
 
-  if (needAccessToken && !user.accessToken) {
+  if (needAccessToken && user.accessToken) {
     res.status(401).send({
       success: false,
       msg: 'neeed login'
@@ -23,7 +23,7 @@ module.exports = function (req, res, next) {
     data: Object.assign({}, req.body, {
       accesstoken: user.accessToken
     }),
-    // 有的请求是formData格式有的请求是application格式，这样都可以接收
+    // 有的请求是formData格式有的请求是application格式，这样cnode api都可以接收
     headers: {
       'Content-Type': 'application/x-www-form-urlencode'
     }
