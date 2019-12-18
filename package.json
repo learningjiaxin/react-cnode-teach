@@ -39,6 +39,7 @@
     "react-hot-loader": "^4.12.18",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "serve-favicon": "^2.5.0",
     "validator": "^12.1.0",
     "webpack": "^4.40.2"
   },

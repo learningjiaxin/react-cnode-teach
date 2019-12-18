@@ -22,13 +22,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div key="banner">
+      <div key='banner'>
         <div>
-          <Link to="/">首页</Link>
+          <Link to='/'>首页</Link>
           <br />
-          <Link to="/detail">详情页</Link>
+          <Link to='/detail'>详情页</Link>
           <br />
-          <input type="text" name="" id="" onChange={this.textFocus} />
+          <input type='text' name='' id='' onChange={this.textFocus} />
           {/* <button onClick={this.textFocus}>提交</button> */}
         </div>
         <Routes />

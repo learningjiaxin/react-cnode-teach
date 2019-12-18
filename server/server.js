@@ -1,4 +1,5 @@
 const express = require('express')
+const favicon = require('serve-favicon')
 // 引用ReactSSR模块
 const ReactSSR = require('react-dom/server')
 const bodyParser = require('body-parser')
@@ -21,6 +22,7 @@ app.use(session({
   secret: 'react cnode class'
 }))
 
+app.use(favicon(path.join(__dirname, '../favicon.ico')))
 // 使用api要放在服务端代码渲染之前
 app.use('/api/user', require('./util/handle-login'))
 app.use('/api', require('./util/proxy'))

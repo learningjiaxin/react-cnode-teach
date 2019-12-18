@@ -29,7 +29,7 @@ export default class TopicList extends Component {
     const { appState } = this.props
     return (
       <div>
-        <input type="text" onChange={this.changeName} />
+        <input type='text' onChange={this.changeName} />
         {appState.msg}
       </div>
     )
