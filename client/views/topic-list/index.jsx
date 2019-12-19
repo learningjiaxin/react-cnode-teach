@@ -4,7 +4,7 @@ import {
   inject,
 } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { AppState } from '../../store/app-state'
+// import { AppState } from '../../store/app-state'
 
 // 定义到provider上叫什么名字这里就叫什么名字
 @inject('appState')
@@ -36,5 +36,5 @@ export default class TopicList extends Component {
   }
 }
 TopicList.propTypes = {
-  appState: PropTypes.instanceOf(AppState).isRequired,
+  appState: PropTypes.object,
 }
