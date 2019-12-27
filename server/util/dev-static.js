@@ -10,7 +10,7 @@ const getTemplate = () => {
     axios.get('http://localhost:8888/public/index.html')
       .then(res => {
         resolve(res.data)
-      }).catch((error) =>{
+      }).catch((error) => {
         console.error("error: " + error)
       })
   })
@@ -22,7 +22,7 @@ const mfs = new MemoryFs
 const serverCompiler = webpack(serverConfig)
 // 这样以前通过fs读写的文件变成mfs读写，内存读写比硬盘快
 serverCompiler.outputFileSystem = mfs
-let serverBundle
+let serverBundle, createStoreMap
 serverCompiler.watch({}, (err, stats) => {
   if (err) {
     throw err
@@ -46,6 +46,7 @@ serverCompiler.watch({}, (err, stats) => {
   // 用module去解析javaScript虚拟内容，生成一个新的模块
   m._compile(bundle, 'server-entry.js')
   serverBundle = m.exports.default
+  createStoreMap = m.exports.createStoreMap
 })
 module.exports = function (app) {
   app.use('/public', proxy({
@@ -53,9 +54,21 @@ module.exports = function (app) {
   }))
   app.get('*', function (req, res) {
     getTemplate().then(template => {
-      const content = ReactDomServer.renderToString(serverBundle)
-      res.send(template.replace('<!-- app -->', content))
-    }).catch((error) =>{
+      const routerContext = {}
+      const stores = createStoreMap()
+      const app = serverBundle(stores, routerContext, req.url)
+      const asyncBootstrapper = require('react-async-bootstrapper')
+      asyncBootstrapper(`${app}`).then(() => {
+        const content = ReactDomServer.renderToNodeStream(`${app}`)
+        if (routerContext.url) {
+          res.status(302).setHeader('Location', routerContext.url)
+          res.end()
+          return
+        }
+        console.log(stores.appState.count)
+        res.send(template.replace('<!-- app -->', content))
+      })
+    }).catch((error) => {
       console.log("errorgetTemplate: " + error)
     })
   })

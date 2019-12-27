@@ -25,6 +25,17 @@ export default class TopicList extends Component {
     appState.changeName(name)
   }
 
+  bootstrap() {
+    console.log(123131312)
+    return new Promise((resolve) => {
+      const { appState } = this.propTypes
+      setTimeout(() => {
+        appState.count = 3
+        resolve(true)
+      })
+    })
+  }
+
   render() {
     const { appState } = this.props
     return (
