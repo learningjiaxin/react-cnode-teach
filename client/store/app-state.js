@@ -7,10 +7,10 @@ import {
 export default class AppState {
   @observable count = 0
 
-  @observable name = 'Jokcy'
+  @observable name = 'Ke Yang'
 
   @computed get msg() {
-    return `${this.name} say count is ${this.count}`
+    return `${this.name} said: ${this.count}`
   }
 
   @action add() {
@@ -19,5 +19,12 @@ export default class AppState {
 
   @action changeName(name) {
     this.name = name
+  }
+
+  toJson() {
+    return {
+      count: this.count,
+      name: this.name,
+    }
   }
 }

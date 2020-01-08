@@ -1,14 +1,13 @@
-const router = require('express').Router()
+const express = require('express')
+const router = express.Router()
 const axios = require('axios')
-
-// 发送请求的代理url
-const baseUrl = 'https://cnodejs.org/api/v1'
+const baseUrl = require('./baseUrl')
 
 router.post('/login', function (req, res, next) {
   axios.post(`${baseUrl}/accesstoken`, {
     accesstoken: req.body.accessToken
   })
-    .then(resp => {
+    .then(function (resp) {
       if (resp.status === 200 && resp.data.success) {
         req.session.user = {
           accessToken: req.body.accessToken,
@@ -16,20 +15,20 @@ router.post('/login', function (req, res, next) {
           id: resp.data.id,
           avatarUrl: resp.data.avatar_url
         }
+        res.json({
+          success: true,
+          data: resp.data
+        })
       }
-      res.json({
-        success: true,
-        data: resp.data
-      })
     })
-    .catch(err => {
+    .catch(function (err) {
       if (err.response) {
         res.json({
           success: false,
-          data: err.response
+          data: err.response.data
         })
       } else {
-        next(err)
+        next(err) // throw exceptions
       }
     })
 })

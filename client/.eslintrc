@@ -1,35 +1,18 @@
 {
-  // 用某一种工具解析我们的代码
   "parser": "babel-eslint",
   "env": {
-    "browser": true,
+    "node": true,
     "es6": true,
-    "node": true
+    "browser": true,
   },
   "parserOptions": {
-    "ecmaFeatures": {
-      "legacyDecorators": true
-    },
+    "ecmaVersion": 6,
     "sourceType": "module"
   },
   "extends": "airbnb",
   "rules": {
-    "semi": [
-      0
-    ],
-    "react/jsx-filename-extension": [
-      0
-    ],
-    "jsx-ally/anthor-is-valid": [
-      0
-    ],
-    "jsx-quotes": ["error", "prefer-single"],
-    "quotes": ["error", "single"],
-    "global-require": 0,
-    "no-console": "off",
-    "react/forbid-prop-types": [0],
-    "react/require-default-props": [0],
-    "react/jsx-props-no-spreading": [0],
-    "react/forbid-foreign-prop-types": [0]
+    "semi": "off",
+    "react/jsx-filename-extension": "off",
+    "react/require-default-props": "off"
   }
 }
