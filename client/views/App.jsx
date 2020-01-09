@@ -13,8 +13,11 @@ export default class App extends Component {
         <Link to="/">
           首页
         </Link>
-        <Link to="/detail/1">
+        <Link to="/detail">
           详情页
+        </Link>
+        <Link to="/hoc">
+          hoc
         </Link>
       </div>,
       <Routes key="routes" />,
