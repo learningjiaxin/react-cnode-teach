@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class OldComponent extends Component {
-  propTypes = {
+  static propTypes = {
     msg: PropTypes.string,
   }
 
   componentDidMount() {
 
+  }
+
+  say = () => {
+    console.log('hello, this is say')
   }
 
   render() {
