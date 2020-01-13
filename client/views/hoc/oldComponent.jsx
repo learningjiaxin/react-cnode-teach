@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 export default class OldComponent extends Component {
   static propTypes = {
-    msg: PropTypes.string,
+    value: PropTypes.string,
+    handleChange: PropTypes.func,
   }
 
   componentDidMount() {
@@ -15,11 +16,10 @@ export default class OldComponent extends Component {
   }
 
   render() {
-    const { msg } = this.props
+    const { value, handleChange } = this.props
     return (
       <div>
-        HocComponent
-        {msg}
+        <input value={value} onChange={handleChange} />
       </div>
     )
   }

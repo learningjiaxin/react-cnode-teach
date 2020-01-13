@@ -2,25 +2,35 @@ import React, { Component } from 'react'
 
 const hocComponent = (WrappedComponent) => {
   class HocComponent extends Component {
+    constructor() {
+      super()
+      this.state = {
+        value: '',
+      }
+
+      this.handleChange = this.handleChange.bind(this)
+    }
+
     componentDidMount() {
 
     }
 
-    proc = (instance) => {
-      instance.say()
-    }
-
-    handleClick = () => {
-      console.log(this.refs.subComp.props)
+    handleChange = (event) => {
+      this.setState({
+        value: event.target.value,
+      })
     }
 
     render() {
+      const { value } = this.state
+      const newProp = {
+        value,
+        handleChange: this.handleChange,
+      }
       return (
         <div>
-          <button type="button" onClick={this.handleClick.bind(this)}>
-            click me
-          </button>
-          <WrappedComponent {...this.props} ref='subComp' />
+          <WrappedComponent {...this.props} {...newProp} />
+          {value}
         </div>
       )
     }
