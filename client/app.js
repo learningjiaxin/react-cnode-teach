@@ -7,11 +7,14 @@ import App from './views/App'
 /** mobx */
 import AppState from './store/app-state'
 
+// eslint-disable-next-line no-underscore-dangle
+const initialState = window.__INITIAL__STATE__ || {}
+
 const root = document.getElementById('root')
 const render = (Component) => {
   ReactDOM.hydrate(
     <AppContainer>
-      <Provider appState={new AppState()}>
+      <Provider appState={new AppState(initialState.appState)}>
         <BrowserRouter>
           <Component />
         </BrowserRouter>
