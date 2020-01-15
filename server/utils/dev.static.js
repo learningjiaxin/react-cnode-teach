@@ -3,8 +3,11 @@ const path = require('path')
 const proxy = require('http-proxy-middleware')
 const MemoryFs = require('memory-fs')
 const webpack = require('webpack')
+const serialize = require('serialize-javascript')
+const ejs = require('ejs')
 const asyncBootstrapper = require('react-async-bootstrapper')
 const ReactDOMServer = require('react-dom/server')
+const Helmet = require('react-helmet').default
 
 const getTemplate = () => new Promise((resolve, reject) => {
   axios.get('http://localhost:8888/public/index.html')
@@ -36,8 +39,18 @@ serverCompiler.watch({
   const bundleJsStr = mfs.readFileSync(bundlePath, 'utf-8')
   /** next transform bundle.js string to bundle.js module */
   const Module = module.constructor
-  const m = new Module()
-  m._compile(bundleJsStr, 'server-entry.js')
+
+  const NativeModule = require('module')
+  const vm = require('vm')
+  const getModuleFromString = (bundle, filename) => {
+    const m = { exports: {} }
+    const wrapper = NativeModule.wrap(bundle)
+    const script = new vm.Script(wrapper, { filename })
+    const result = script.runInThisContext({ displayErrors: true })
+    result.call(m.exports, m.exports, require, m)// 'require' is in our current context, solve 'react is not found' error
+    return m
+  }
+  const m = getModuleFromString(bundleJsStr, 'server-entry.js')
   bundleJsFunc = m.exports.default
   createStoreMap = m.exports.createStoreMap
 })
@@ -71,11 +84,23 @@ module.exports = (app) => {
           res.end()
           return
         }
+
+        const helmet = Helmet.rewind()
         // console.log(stores.appState.name)
         const storeState = getStoreState(stores)
         console.log(storeState)
         const content = ReactDOMServer.renderToString(serverEntry)
-        res.send(template.replace('<!-- app -->', content))
+
+        const html = ejs.render(template, {
+          appString: content,
+          initialState: serialize(storeState),
+          meta: helmet.meta.toString(),
+          title: helmet.title.toString(),
+          style: helmet.style.toString(),
+          link: helmet.link.toString()
+        })
+        res.send(html)
+        // res.send(template.replace('<!-- app -->', content))
       })
     }).catch(next)
   })
