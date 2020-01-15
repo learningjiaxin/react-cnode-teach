@@ -6,7 +6,7 @@ import HocComponent from './hocComponent'
 class TextAreaComponent extends Component {
   static propTypes = {
     value: PropTypes.string,
-    handleChange: PropTypes.func,
+    handleChange: PropTypes.func
   }
 
   render() {

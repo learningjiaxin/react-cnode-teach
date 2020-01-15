@@ -5,7 +5,7 @@ const hocComponent = (WrappedComponent) => {
     constructor() {
       super()
       this.state = {
-        value: '',
+        value: ''
       }
 
       this.handleChange = this.handleChange.bind(this)
@@ -17,7 +17,7 @@ const hocComponent = (WrappedComponent) => {
 
     handleChange = (event) => {
       this.setState({
-        value: event.target.value,
+        value: event.target.value
       })
     }
 
@@ -25,7 +25,7 @@ const hocComponent = (WrappedComponent) => {
       const { value } = this.state
       const newProp = {
         value,
-        handleChange: this.handleChange,
+        handleChange: this.handleChange
       }
       return (
         <div>

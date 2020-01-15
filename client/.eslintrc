@@ -16,6 +16,7 @@
     "react/require-default-props": "off",
     "react/prefer-stateless-function": "off",
     "react/no-string-refs": "off",
+    "comma-dangle": [2, "never"],
     "jsx-quotes": "off"
   }
 }

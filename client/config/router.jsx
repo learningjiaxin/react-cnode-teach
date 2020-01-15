@@ -10,5 +10,5 @@ export default () => [
   <Route path="/list" component={TopicList} key="list" />,
   <Route path="/detail" component={TopicDetail} key="detail" />,
   <Route path="/test" component={ApiTest} key="test" />,
-  <Route path="/hoc" component={MyComponent} key="hoc" />,
+  <Route path="/hoc" component={MyComponent} key="hoc" />
 ]

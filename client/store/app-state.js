@@ -1,7 +1,7 @@
 import {
   observable,
   computed,
-  action,
+  action
 } from 'mobx'
 
 export default class AppState {
@@ -24,7 +24,7 @@ export default class AppState {
   toJson() {
     return {
       count: this.count,
-      name: this.name,
+      name: this.name
     }
   }
 }

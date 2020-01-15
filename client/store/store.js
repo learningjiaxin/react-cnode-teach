@@ -1,9 +1,9 @@
 import AppState from './app-state'
 
 export default {
-  AppState,
+  AppState
 }
 
 export const createStoreMap = () => ({
-  appState: new AppState(),
+  appState: new AppState()
 })

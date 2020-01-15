@@ -20,7 +20,7 @@ export default class App extends Component {
           hoc
         </Link>
       </div>,
-      <Routes key="routes" />,
+      <Routes key="routes" />
     ]
   }
 }

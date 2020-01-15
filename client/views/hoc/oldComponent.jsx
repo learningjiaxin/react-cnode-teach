@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default class OldComponent extends Component {
   static propTypes = {
     value: PropTypes.string,
-    handleChange: PropTypes.func,
+    handleChange: PropTypes.func
   }
 
   componentDidMount() {
