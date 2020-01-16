@@ -44,6 +44,6 @@ app.use(function (error, req, res, next) {
   res.status(500).send(error)
 })
 
-app.listen(3333, function () {
-  console.log('server is listening on 3333 port')
+app.listen(3334, function () {
+  console.log('server is listening on 3334 port')
 })

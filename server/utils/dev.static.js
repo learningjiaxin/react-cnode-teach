@@ -6,7 +6,7 @@ const webpack = require('webpack')
 const serverRender = require('./server-render')
 
 const getTemplate = () => new Promise((resolve, reject) => {
-  axios.get('http://localhost:8888/public/server.template.ejs')
+  axios.get('http://localhost:8889/public/server.template.ejs')
     .then(res => {
       resolve(res.data)
     })
@@ -50,7 +50,7 @@ serverCompiler.watch({
 
 module.exports = (app) => {
   app.use('/public', proxy({
-    target: 'http://localhost:8888'
+    target: 'http://localhost:8889'
   }))
   app.get('*', (req, res, next) => {
     if (!serverBundle) {
