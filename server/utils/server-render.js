@@ -33,7 +33,7 @@ module.exports = (bundle, template, req, res) => {
       const helmet = Helmet.rewind()
       // console.log(stores.appState.name)
       const storeState = getStoreState(stores)
-      console.log(storeState)
+      console.log(serverEntry, 'serverEntry')
       const content = ReactDOMServer.renderToString(serverEntry)
 
       // 获取服务端渲染的html的内容
